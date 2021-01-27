@@ -40,6 +40,7 @@ data "template_file" "values" {
     service_port        = jsonencode(var.service_port)
     service_annotations = jsonencode(var.service_annotations)
 
+    extra_arguments     = jsonencode(var.extra_arguments)
     extra_volumes       = jsonencode(var.extra_volumes)
     extra_volume_mounts = jsonencode(var.extra_volume_mounts)
 

@@ -78,6 +78,11 @@ variable "psp_enable" {
   default     = true
 }
 
+variable "extra_arguments" {
+  description = "Extra arguments for the container"
+  default     = []
+}
+
 variable "extra_volumes" {
   description = "Extra volumes for the adapter"
   default     = []
