@@ -14,14 +14,12 @@ resource "helm_release" "prometheus_adapter" {
   max_history = var.max_history
 
   values = [
-    data.template_file.values.rendered,
+    templatefile("${path.module}/templates/values.yaml", local.values),
   ]
 }
 
-data "template_file" "values" {
-  template = file("${path.module}/templates/values.yaml")
-
-  vars = {
+locals {
+  values = {
     image    = var.image
     tag      = var.tag
     affinity = jsonencode(var.affinity)
@@ -40,6 +38,7 @@ data "template_file" "values" {
     service_port        = jsonencode(var.service_port)
     service_annotations = jsonencode(var.service_annotations)
 
+    extra_arguments     = jsonencode(var.extra_arguments)
     extra_volumes       = jsonencode(var.extra_volumes)
     extra_volume_mounts = jsonencode(var.extra_volume_mounts)
 
