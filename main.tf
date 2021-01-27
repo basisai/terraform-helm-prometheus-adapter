@@ -14,14 +14,12 @@ resource "helm_release" "prometheus_adapter" {
   max_history = var.max_history
 
   values = [
-    data.template_file.values.rendered,
+    templatefile("${path.module}/templates/values.yaml", local.values),
   ]
 }
 
-data "template_file" "values" {
-  template = file("${path.module}/templates/values.yaml")
-
-  vars = {
+locals {
+  values = {
     image    = var.image
     tag      = var.tag
     affinity = jsonencode(var.affinity)

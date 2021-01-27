@@ -17,7 +17,6 @@ Prometheus.
 | Name | Version |
 |------|---------|
 | helm | >= 1.0 |
-| template | n/a |
 
 ## Inputs
 
@@ -28,6 +27,7 @@ Prometheus.
 | chart\_namespace | Namespace to install the chart into | `string` | `"default"` | no |
 | chart\_repository | Helm repository for the chart | `string` | `"https://prometheus-community.github.io/helm-charts"` | no |
 | chart\_version | Version of Chart to install. Set to empty to install the latest version | `string` | `""` | no |
+| extra\_arguments | Extra arguments for the container | `list` | `[]` | no |
 | extra\_volume\_mounts | Extra volume mounts for the adapter container | `list` | `[]` | no |
 | extra\_volumes | Extra volumes for the adapter | `list` | `[]` | no |
 | image | Docker image for the Prometheus Adapter | `string` | `"directxman12/k8s-prometheus-adapter-amd64"` | no |
