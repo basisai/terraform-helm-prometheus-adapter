@@ -78,6 +78,11 @@ variable "psp_enable" {
   default     = true
 }
 
+variable "service_account_annotations" {
+  description = "Service Account Annotations"
+  default     = {}
+}
+
 variable "extra_arguments" {
   description = "Extra arguments for the container"
   default     = []
