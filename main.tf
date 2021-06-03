@@ -25,6 +25,8 @@ locals {
     affinity = jsonencode(var.affinity)
     replicas = jsonencode(var.replicas)
 
+    service_account_annotations = jsonencode(var.service_account_annotations)
+
     resources = jsonencode(var.resources)
 
     log_level           = jsonencode(var.log_level)
