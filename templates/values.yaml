@@ -24,6 +24,11 @@ prometheus:
 
 replicas: ${replicas}
 
+# k8s 1.21 needs fsGroup to be set for non root deployments
+# ref: https://github.com/kubernetes/kubernetes/issues/70679
+podSecurityContext: ${pod_security_context}
+  # fsGroup: 10001
+
 rbac:
   # Specifies whether RBAC resources should be created
   create: true
@@ -151,8 +156,31 @@ extraVolumeMounts: ${extra_volume_mounts}
 
 tolerations: ${tolerations}
 
+# Labels added to the pod
+podLabels: ${pod_labels}
+
 # Annotations added to the pod
 podAnnotations: ${pod_annotations}
+
+hostNetwork:
+  # Specifies if prometheus-adapter should be started in hostNetwork mode.
+  #
+  # You would require this enabled if you use alternate overlay networking for pods and
+  # API server unable to communicate with metrics-server. As an example, this is required
+  # if you use Weave network on EKS. See also dnsPolicy
+  enabled: ${host_network_enabled}
+
+%{ if host_network_enabled == true ~}
+# When hostNetwork is enabled, you probably want to set this to ClusterFirstWithHostNet
+dnsPolicy: ClusterFirstWithHostNet
+%{ endif ~}
+
+# Deployment strategy type
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 25%
+    maxSurge: 25%
 
 podDisruptionBudget:
   # Specifies if PodDisruptionBudget should be enabled

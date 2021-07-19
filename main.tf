@@ -1,9 +1,3 @@
-terraform {
-  required_providers {
-    helm = ">= 1.0"
-  }
-}
-
 resource "helm_release" "prometheus_adapter" {
   name       = var.release_name
   chart      = var.chart_name
@@ -22,8 +16,9 @@ locals {
   values = {
     image    = var.image
     tag      = var.tag
-    affinity = jsonencode(var.affinity)
-    replicas = jsonencode(var.replicas)
+    replicas = var.replicas
+
+    host_network_enabled = var.host_network_enabled
 
     service_account_annotations = jsonencode(var.service_account_annotations)
 
@@ -44,8 +39,11 @@ locals {
     extra_volumes       = jsonencode(var.extra_volumes)
     extra_volume_mounts = jsonencode(var.extra_volume_mounts)
 
-    tolerations     = jsonencode(var.tolerations)
-    pod_annotations = jsonencode(var.pod_annotations)
+    affinity             = jsonencode(var.affinity)
+    tolerations          = jsonencode(var.tolerations)
+    pod_labels           = jsonencode(var.pod_labels)
+    pod_annotations      = jsonencode(var.pod_annotations)
+    pod_security_context = jsonencode(var.pod_security_context)
 
     pdb_enable          = var.pdb_enable
     pdb_max_unavailable = var.pdb_max_unavailable

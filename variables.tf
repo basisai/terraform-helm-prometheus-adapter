@@ -35,12 +35,12 @@ variable "affinity" {
 
 variable "image" {
   description = "Docker image for the Prometheus Adapter"
-  default     = "directxman12/k8s-prometheus-adapter-amd64"
+  default     = "quay.io/coreos/k8s-prometheus-adapter-amd64"
 }
 
 variable "tag" {
   description = "Docker Image tag for the Prometheus Adapter"
-  default     = "latest"
+  default     = "v0.8.4"
 }
 
 variable "log_level" {
@@ -73,6 +73,11 @@ variable "resources" {
   default     = {}
 }
 
+variable "host_network_enabled" {
+  description = "Specifies if prometheus-adapter should be started in hostNetwork mode."
+  default     = false
+}
+
 variable "psp_enable" {
   description = "Enable the use of pod security policies"
   default     = true
@@ -103,9 +108,21 @@ variable "tolerations" {
   default     = []
 }
 
+variable "pod_labels" {
+  description = "Pod labels"
+  default     = {}
+}
+
 variable "pod_annotations" {
   description = "Pod annotations"
   default     = {}
+}
+
+variable "pod_security_context" {
+  description = "securityContext for the pod"
+  default = {
+    fsGroup = 10001
+  }
 }
 
 variable "pdb_enable" {
