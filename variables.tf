@@ -75,6 +75,7 @@ variable "resources" {
 
 variable "host_network_enabled" {
   description = "Specifies if prometheus-adapter should be started in hostNetwork mode."
+  type        = bool
   default     = false
 }
 
