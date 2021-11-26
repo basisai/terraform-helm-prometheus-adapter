@@ -12,9 +12,17 @@ metricsRelistInterval: 1m
 
 listenPort: 6443
 
-nodeSelector: {}
+nodeSelector: ${node_selector}
 
 priorityClassName: ${priority_class_name}
+
+## Additional annotations to add to all resources
+customAnnotations: ${custom_annotations}
+  # role: custom-metrics
+
+## Additional labels to add to all resources
+customLabels: ${custom_labels}
+  # monitoring: prometheus-adapter
 
 # Url to access prometheus
 prometheus:

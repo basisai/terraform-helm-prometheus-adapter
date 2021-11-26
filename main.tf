@@ -1,9 +1,10 @@
 resource "helm_release" "prometheus_adapter" {
-  name       = var.release_name
-  chart      = var.chart_name
-  repository = var.chart_repository
-  version    = var.chart_version
-  namespace  = var.chart_namespace
+  name         = var.release_name
+  chart        = var.chart_name
+  repository   = var.chart_repository
+  version      = var.chart_version
+  namespace    = var.chart_namespace
+  force_update = var.force_update
 
   max_history = var.max_history
 
@@ -41,9 +42,12 @@ locals {
 
     affinity             = jsonencode(var.affinity)
     tolerations          = jsonencode(var.tolerations)
+    node_selector        = jsonencode(var.node_selector)
     pod_labels           = jsonencode(var.pod_labels)
     pod_annotations      = jsonencode(var.pod_annotations)
     pod_security_context = jsonencode(var.pod_security_context)
+    custom_annotations   = jsonencode(var.custom_annotations)
+    custom_labels        = jsonencode(var.custom_labels)
 
     pdb_enable          = var.pdb_enable
     pdb_max_unavailable = var.pdb_max_unavailable
