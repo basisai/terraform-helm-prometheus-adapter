@@ -41,7 +41,7 @@ No modules.
 | <a name="input_extra_volumes"></a> [extra\_volumes](#input\_extra\_volumes) | Extra volumes for the adapter | `list(any)` | `[]` | no |
 | <a name="input_force_update"></a> [force\_update](#input\_force\_update) | Force resource update through delete/recreate if needed. | `bool` | `false` | no |
 | <a name="input_host_network_enabled"></a> [host\_network\_enabled](#input\_host\_network\_enabled) | Specifies if prometheus-adapter should be started in hostNetwork mode. | `bool` | `false` | no |
-| <a name="input_image"></a> [image](#input\_image) | Docker image for the Prometheus Adapter | `string` | `"k8s.gcr.io/prometheus-adapter/prometheus-adapter"` | no |
+| <a name="input_image"></a> [image](#input\_image) | Docker image for the Prometheus Adapter | `string` | `"registry.k8s.io/prometheus-adapter/prometheus-adapter"` | no |
 | <a name="input_log_level"></a> [log\_level](#input\_log\_level) | Numerical log level for the adapter | `number` | `4` | no |
 | <a name="input_max_history"></a> [max\_history](#input\_max\_history) | Max History for Helm | `number` | `20` | no |
 | <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector) | nodeSelector for the pod | `map(any)` | `{}` | no |
