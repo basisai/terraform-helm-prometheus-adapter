@@ -49,7 +49,7 @@ variable "affinity" {
 variable "image" {
   description = "Docker image for the Prometheus Adapter"
   type        = string
-  default     = "k8s.gcr.io/prometheus-adapter/prometheus-adapter"
+  default     = "registry.k8s.io/prometheus-adapter/prometheus-adapter"
 }
 
 variable "tag" {
